@@ -15,7 +15,7 @@ using namespace std;
 int main() {
   double array[7] = {0, 0, 0, 0, 0, 0, 0};
 
-  interface::interface(array);
+  userInterface::interface(array);
 
   return 0;
 }

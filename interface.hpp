@@ -5,13 +5,11 @@
 
 #include <iostream>
 
-#include "editAlgorithm.hpp"
-#include "scaleAlgorithm.hpp"
+#include "Algorithms.hpp"
 
 using namespace std;
 
-namespace interface {
-
+namespace userInterface {
 void interface(double array[7]) {
   char interfaceInput = 0;
 
@@ -23,39 +21,9 @@ void interface(double array[7]) {
   std::cin >> interfaceInput;
 
   if (interfaceInput == '0') {
-    std::cout << "What tablet driver are you currently using?\n"
-                 "0: Wacom\n"
-                 "1: Open Tablet Driver"
-              << endl;
-    std::cin >> interfaceInput;
-
-    if (interfaceInput == '0') {
-      wacom::edit::input(array);
-      wacom::edit::wacom(array);
-      wacom::edit::output(array);
-    } else if (interfaceInput == '1') {
-      tabletDriver::edit::input(array);
-      tabletDriver::edit::tabletDriver(array);
-      tabletDriver::edit::output(array);
-    } else {
-      std::cout << "Invalid input!" << endl;
-      exit(1);
-    }
+    editInterface(array, interfaceInput);
   } else if (interfaceInput == '1') {
-    std::cout << "What tablet driver are you currently using?\n"
-                 "0: Wacom\n"
-                 "1: Open Tablet Driver"
-              << endl;
-    std::cin >> interfaceInput;
-    if (interfaceInput == '0') {
-      wacom::scale::input(array);
-      wacom::scale::wacom(array);
-      wacom::scale::output(array);
-    } else if (interfaceInput == '1') {
-      tabletDriver::scale::input(array);
-      tabletDriver::scale::tabletDriver(array);
-      tabletDriver::scale::output(array);
-    }
+    scaleInterface(array, interfaceInput);
   } else if (interfaceInput == '2') {
     exit(0);
   } else {
@@ -64,6 +32,44 @@ void interface(double array[7]) {
   }
 }
 
-}  // namespace interface
+void editInterface(double array[7], char interfaceInput) {
+  std::cout << "What tablet driver are you currently using?\n"
+               "0: Wacom\n"
+               "1: Open Tablet Driver"
+            << endl;
+  std::cin >> interfaceInput;
+
+  if (interfaceInput == '0') {
+    wacom::edit::input(array);
+    wacom::edit::wacom(array);
+    wacom::output(array);
+  } else if (interfaceInput == '1') {
+    tabletDriver::edit::input(array);
+    tabletDriver::edit::tabletDriver(array);
+    tabletDriver::output(array);
+  } else {
+    std::cout << "Invalid input!" << endl;
+    exit(1);
+  }
+}
+
+void scaleInterface(double array[7], char interfaceInput) {
+  std::cout << "What tablet driver are you currently using?\n"
+               "0: Wacom\n"
+               "1: Open Tablet Driver"
+            << endl;
+  std::cin >> interfaceInput;
+  if (interfaceInput == '0') {
+    wacom::scale::input(array);
+    wacom::scale::wacom(array);
+    wacom::output(array);
+  } else if (interfaceInput == '1') {
+    tabletDriver::scale::input(array);
+    tabletDriver::scale::tabletDriver(array);
+    tabletDriver::output(array);
+  }
+}
+
+}  // namespace userInterface
 
 #endif
